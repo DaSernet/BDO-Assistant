@@ -1,24 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Media;
-using System.Text;
-using System.Threading.Tasks;
-using System.Timers;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Threading;
-using System.Reflection;
 using System.Diagnostics;
 using System.Globalization;
+using System.Media;
+using System.Reflection;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Media;
+using System.Windows.Threading;
 
 namespace BDOAssistant
 {
@@ -26,6 +15,8 @@ namespace BDOAssistant
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     ///
+
+    //My first project made in 2017
 
     //flotsdrue123 told me to turn everything into a map for C#
     //which is apparently a sorted dictionary in C#, we want to use time as the key
@@ -38,14 +29,12 @@ namespace BDOAssistant
         }
     }
 
-
-
     public partial class MainWindow : Window
     {
-        DispatcherTimer _timer;
-        TimeSpan _time;
-        int number = 1; //used to change compact mode
-        bool displayed = true;
+        private DispatcherTimer _timer;
+        private TimeSpan _time;
+        private int number = 1; //used to change compact mode
+        private bool displayed = true;
 
         public MainWindow()
         {
@@ -53,20 +42,17 @@ namespace BDOAssistant
             _time = TimeSpan.FromSeconds(10);
             String CurrentTime;
 
-
             if (Properties.Settings.Default.FirstRun == 0)
             {
-                MessageBox.Show("This is your first time running this version, please update your setttings!");
+                MessageBox.Show("This is your first time running this version, please update your settings!");
             }
             Properties.Settings.Default.FirstRun = 1;
             Properties.Settings.Default.Save();
 
             _timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
             {
-
                 //MessageBox.show("text");
                 MainWindow1.Topmost = Properties.Settings.Default.StayOnTopMain;
-
 
                 if (Properties.Settings.Default.Theme == 0)
                 {
@@ -93,9 +79,6 @@ namespace BDOAssistant
                     Theme3.Visibility = Visibility.Hidden;
                 }
 
-
-
-
                 String CustomColor = Properties.Settings.Default.Color;
                 Twitch.Foreground = CustomColor.ToBrush();
                 label_PreviousBoss.Foreground = CustomColor.ToBrush();
@@ -108,17 +91,10 @@ namespace BDOAssistant
                 ImperialBox.Foreground = CustomColor.ToBrush();
                 NightBox.Foreground = CustomColor.ToBrush();
 
-
-
-
-
                 DateTime CurrentTime1 = DateTime.UtcNow;
                 CurrentTime = CurrentTime1.ToString("HH:mm:ss");
                 String CurrentDay = CurrentTime1.ToString("dddd", new CultureInfo("en-GB"));
                 DateTime moment = CurrentTime1;
-
-
-
 
                 int SummerTime = 0; //change value in case needed for +1 hour or -1 hour
 
@@ -135,20 +111,14 @@ namespace BDOAssistant
 
                 Boolean Condition = false;
 
-
-
-
-
                 int NightHours = 0;
                 int ImperialHours = 0;
                 Boolean RemindForImperial = false;
-
 
                 if (NightMinutes < 0)
                 {
                     NightMinutes = NightMinutes + 60;
                 }
-
 
                 switch (moment.Hour)
                 {
@@ -156,14 +126,17 @@ namespace BDOAssistant
                         NightHours = 3;
                         ImperialHours = 2;
                         break;
+
                     case 1:
                         NightHours = 2;
                         ImperialHours = 1;
                         break;
+
                     case 2:
                         NightHours = 1;
                         ImperialHours = 0;
                         break;
+
                     case 3:
                         NightHours = 0;
                         ImperialHours = 2;
@@ -173,19 +146,23 @@ namespace BDOAssistant
                         }
                         RemindForImperial = Properties.Settings.Default.Imperial3;
                         break;
+
                     case 4:
                         NightHours = 3;
                         ImperialHours = 1;
                         break;
+
                     case 5:
                         NightHours = 2;
                         ImperialHours = 0;
                         RemindForImperial = Properties.Settings.Default.Imperial6;
                         break;
+
                     case 6:
                         NightHours = 1;
                         ImperialHours = 2;
                         break;
+
                     case 7:
                         NightHours = 0;
                         ImperialHours = 1;
@@ -194,19 +171,23 @@ namespace BDOAssistant
                             NightHours = 4;
                         }
                         break;
+
                     case 8:
                         NightHours = 3;
                         ImperialHours = 0;
                         RemindForImperial = Properties.Settings.Default.Imperial9;
                         break;
+
                     case 9:
                         NightHours = 2;
                         ImperialHours = 2;
                         break;
+
                     case 10:
                         NightHours = 1;
                         ImperialHours = 1;
                         break;
+
                     case 11:
                         NightHours = 0;
                         ImperialHours = 0;
@@ -216,19 +197,23 @@ namespace BDOAssistant
                         }
                         RemindForImperial = Properties.Settings.Default.Imperial12;
                         break;
+
                     case 12:
                         NightHours = 3;
                         ImperialHours = 2;
                         break;
+
                     case 13:
                         NightHours = 2;
                         ImperialHours = 1;
                         break;
+
                     case 14:
                         NightHours = 1;
                         ImperialHours = 0;
                         RemindForImperial = Properties.Settings.Default.Imperial15;
                         break;
+
                     case 15:
                         NightHours = 0;
                         ImperialHours = 2;
@@ -237,19 +222,23 @@ namespace BDOAssistant
                             NightHours = 4;
                         }
                         break;
+
                     case 16:
                         NightHours = 3;
                         ImperialHours = 1;
                         break;
+
                     case 17:
                         NightHours = 2;
                         ImperialHours = 0;
                         RemindForImperial = Properties.Settings.Default.Imperial18;
                         break;
+
                     case 18:
                         NightHours = 1;
                         ImperialHours = 2;
                         break;
+
                     case 19:
                         NightHours = 0;
                         if (moment.Minute >= 40)
@@ -258,19 +247,23 @@ namespace BDOAssistant
                         }
                         ImperialHours = 1;
                         break;
+
                     case 20:
                         NightHours = 3;
                         ImperialHours = 0;
                         RemindForImperial = Properties.Settings.Default.Imperial21;
                         break;
+
                     case 21:
                         NightHours = 2;
                         ImperialHours = 2;
                         break;
+
                     case 22:
                         NightHours = 1;
                         ImperialHours = 1;
                         break;
+
                     case 23:
                         NightHours = 0;
                         ImperialHours = 0;
@@ -307,7 +300,6 @@ namespace BDOAssistant
                     {
                         Condition = false;
                     }
-
 
                     if (moment.Hour >= 18 || Condition)
                     {
@@ -348,25 +340,30 @@ namespace BDOAssistant
                 {
                     switch (CurrentDay)
                     {
-
                         case "Monday":
                             BossNumber = -1;
                             break;
+
                         case "Tuesday":
                             BossNumber = 7;
                             break;
+
                         case "Wednesday":
                             BossNumber = 15;
                             break;
+
                         case "Thursday":
                             BossNumber = 24;
                             break;
+
                         case "Friday":
                             BossNumber = 32;
                             break;
+
                         case "Saturday":
                             BossNumber = 40;
                             break;
+
                         case "Sunday":
                             BossNumber = 48;
                             break;
@@ -377,31 +374,35 @@ namespace BDOAssistant
                 {
                     switch (CurrentDay)
                     {
-
                         case "Monday":
                             BossNumber = -1;
                             break;
+
                         case "Tuesday":
                             BossNumber = 7;
                             break;
+
                         case "Wednesday":
                             BossNumber = 15;
                             break;
+
                         case "Thursday":
                             BossNumber = 24;
                             break;
+
                         case "Friday":
                             BossNumber = 32;
                             break;
+
                         case "Saturday":
                             BossNumber = 40;
                             break;
+
                         case "Sunday":
                             BossNumber = 48;
                             break;
                     }
                 }
-
 
                 if (Properties.Settings.Default.Region == 0) //eu, working!
                 {
@@ -411,74 +412,92 @@ namespace BDOAssistant
                             BossNumber += 1;
                             BossHours = 0;
                             break;
+
                         case 1:
                             BossNumber += 2;
                             BossHours = 2;
                             break;
+
                         case 2:
                             BossNumber += 2;
                             BossHours = 1;
                             break;
+
                         case 3:
                             BossNumber += 2;
                             BossHours = 0;
                             break;
+
                         case 4:
                             BossNumber += 3;
                             BossHours = 3;
                             break;
+
                         case 5:
                             BossNumber += 3;
                             BossHours = 2;
                             break;
+
                         case 6:
                             BossNumber += 3;
                             BossHours = 1;
                             break;
+
                         case 7:
                             BossNumber += 3;
                             BossHours = 0;
                             break;
+
                         case 8:
                             BossNumber += 4;
                             BossHours = 2;
                             break;
+
                         case 9:
                             BossNumber += 4;
                             BossHours = 1;
                             break;
+
                         case 10:
                             BossNumber += 4;
                             BossHours = 0;
                             break;
+
                         case 11:
                             BossNumber += 5;
                             BossHours = 3;
                             break;
+
                         case 12:
                             BossNumber += 5;
                             BossHours = 2;
                             break;
+
                         case 13:
                             BossNumber += 5;
                             BossHours = 1;
                             break;
+
                         case 14:
                             BossNumber += 5;
                             BossHours = 0;
                             break;
+
                         case 15:
                             BossNumber += 6;
                             BossHours = 2;
                             break;
+
                         case 16:
                             BossNumber += 6;
                             BossHours = 1;
                             break;
+
                         case 17:
                             BossNumber += 6;
                             BossHours = 0;
                             break;
+
                         case 18:
                             BossNumber += 7;
                             BossHours = 3;
@@ -492,6 +511,7 @@ namespace BDOAssistant
                                 BossHours = BossHours - 1;
                             }
                             break;
+
                         case 19:
                             BossNumber += 7;
                             BossHours = 2;
@@ -505,6 +525,7 @@ namespace BDOAssistant
                                 BossHours = BossHours - 1;
                             }
                             break;
+
                         case 20:
                             BossNumber += 7;
                             BossHours = 1;
@@ -519,6 +540,7 @@ namespace BDOAssistant
                             }
 
                             break;
+
                         case 21:
                             BossNumber += 7;
                             BossHours = 0;
@@ -546,6 +568,7 @@ namespace BDOAssistant
                             }
 
                             break;
+
                         case 22:
                             BossNumber += 8;
                             BossHours = 1;
@@ -567,6 +590,7 @@ namespace BDOAssistant
                             }
 
                             break;
+
                         case 23:
 
                             BossNumber += 8;
@@ -585,10 +609,6 @@ namespace BDOAssistant
                     }
                 }
 
-
-
-
-
                 if (Properties.Settings.Default.Region == 1) //NA not working (just like their damage)
                 {
                     switch (moment.Hour)
@@ -597,26 +617,32 @@ namespace BDOAssistant
                             BossNumber += 2;
                             BossHours = 2;
                             break;
+
                         case 1:
                             BossNumber += 2;
                             BossHours = 1;
                             break;
+
                         case 2:
                             BossNumber += 2;
                             BossHours = 0;
                             break;
+
                         case 3:
                             BossNumber += 3;
                             BossHours = 3;
                             break;
+
                         case 4:
                             BossNumber += 3;
                             BossHours = 2;
                             break;
+
                         case 5:
                             BossNumber += 3;
                             BossHours = 1;
                             break;
+
                         case 6:
                             BossNumber += 3;
                             BossHours = 0;
@@ -625,10 +651,12 @@ namespace BDOAssistant
                             BossNumber += 4;
                             BossHours = 2;
                             break;
+
                         case 8:
                             BossNumber += 4;
                             BossHours = 1;
                             break;
+
                         case 9:
                             BossNumber += 4;
                             BossHours = 0;
@@ -637,14 +665,17 @@ namespace BDOAssistant
                             BossNumber += 5;
                             BossHours = 3;
                             break;
+
                         case 11:
                             BossNumber += 5;
                             BossHours = 2;
                             break;
+
                         case 12:
                             BossNumber += 5;
                             BossHours = 1;
                             break;
+
                         case 13:
                             BossNumber += 5;
                             BossHours = 0;
@@ -653,10 +684,12 @@ namespace BDOAssistant
                             BossNumber += 6;
                             BossHours = 2;
                             break;
+
                         case 15:
                             BossNumber += 6;
                             BossHours = 1;
                             break;
+
                         case 16:
                             BossNumber += 6;
                             BossHours = 0;
@@ -709,6 +742,7 @@ namespace BDOAssistant
                             }
 
                             break;
+
                         case 19:
                             BossNumber += 7;
                             BossHours = 1;
@@ -731,6 +765,7 @@ namespace BDOAssistant
                                 }
                             }
                             break;
+
                         case 20:
                             BossNumber += 7;
                             BossHours = 0;
@@ -754,8 +789,8 @@ namespace BDOAssistant
                                 BossHours = 0;
                             }
 
-
                             break;
+
                         case 21:
                             BossNumber += 8;
                             BossHours = 1;
@@ -779,6 +814,7 @@ namespace BDOAssistant
                             }
 
                             break;
+
                         case 22:
                             BossNumber += 8;
                             BossHours = 0;
@@ -802,6 +838,7 @@ namespace BDOAssistant
                                 BossHours = 0;
                             }
                             break;
+
                         case 23:
                             BossNumber += 9;
                             BossHours = 0;
@@ -812,8 +849,6 @@ namespace BDOAssistant
                             break;
                     }
                 }
-
-
 
                 NightHours = NightHours + SummerTime;
                 ImperialHours = ImperialHours + SummerTime; // adds or removes an hour incase needed for summer time
@@ -838,7 +873,6 @@ namespace BDOAssistant
                 {
                     fillerSeconds = "";
                 }
-
 
                 String fillerMinutes1 = "";
                 String fillerSeconds1 = "";
@@ -865,8 +899,6 @@ namespace BDOAssistant
                 String fillerSeconds2 = "";
                 String fillerHours2 = "0";
 
-
-
                 if (BossMinutes < 10)
                 {
                     fillerMinutes2 = "0";
@@ -883,7 +915,6 @@ namespace BDOAssistant
                 {
                     fillerSeconds2 = "";
                 }
-
 
                 String ImperialTime = $"{fillerHours}{ImperialHours}:{fillerMinutes}{ImperialMinutes}:{fillerSeconds}{ImperialSeconds}";
                 String BossTime = $"{fillerHours2}{BossHours}:{fillerMinutes2}{BossMinutes}:{fillerSeconds2}{BossSeconds}";
@@ -915,7 +946,6 @@ namespace BDOAssistant
                         NightBox.Text = $"{fillerHours1}{NightHours}:{fillerMinutes1}{NightMinutes}";
                     }
                 }
-
 
                 String[] ImperialReminderTimes = { "00:10:01", "00:10:99", "00:01:01", "00:01:99" };
                 String[] NightReminderTimes = { "00:00:02", "00:00:99" };
@@ -965,7 +995,6 @@ namespace BDOAssistant
                 BossNameBox.Text = BossName;
                 PreviousBossNameBox.Text = PrevBossName;
 
-
                 Properties.Settings.Default.RemindNextBoss = false;
 
                 if (Properties.Settings.Default.Karanda == true)
@@ -974,7 +1003,6 @@ namespace BDOAssistant
                     {
                         Properties.Settings.Default.RemindNextBoss = true;
                         Properties.Settings.Default.Save();
-
                     }
                 }
                 if (Properties.Settings.Default.Kzarka == true)
@@ -983,7 +1011,6 @@ namespace BDOAssistant
                     {
                         Properties.Settings.Default.RemindNextBoss = true;
                         Properties.Settings.Default.Save();
-
                     }
                 }
                 if (Properties.Settings.Default.Offin == true)
@@ -992,7 +1019,6 @@ namespace BDOAssistant
                     {
                         Properties.Settings.Default.RemindNextBoss = true;
                         Properties.Settings.Default.Save();
-
                     }
                 }
                 if (Properties.Settings.Default.Kutum == true)
@@ -1001,7 +1027,6 @@ namespace BDOAssistant
                     {
                         Properties.Settings.Default.RemindNextBoss = true;
                         Properties.Settings.Default.Save();
-
                     }
                 }
                 if (Properties.Settings.Default.Nouver == true)
@@ -1010,7 +1035,6 @@ namespace BDOAssistant
                     {
                         Properties.Settings.Default.RemindNextBoss = true;
                         Properties.Settings.Default.Save();
-
                     }
                 }
                 if (Properties.Settings.Default.Vell == true)
@@ -1019,7 +1043,6 @@ namespace BDOAssistant
                     {
                         Properties.Settings.Default.RemindNextBoss = true;
                         Properties.Settings.Default.Save();
-
                     }
                 }
                 if (Properties.Settings.Default.Garmoth == true)
@@ -1028,7 +1051,6 @@ namespace BDOAssistant
                     {
                         Properties.Settings.Default.RemindNextBoss = true;
                         Properties.Settings.Default.Save();
-
                     }
                 }
                 if (Properties.Settings.Default.Quint == true)
@@ -1037,7 +1059,6 @@ namespace BDOAssistant
                     {
                         Properties.Settings.Default.RemindNextBoss = true;
                         Properties.Settings.Default.Save();
-
                     }
                 }
 
@@ -1103,7 +1124,6 @@ namespace BDOAssistant
                         {
                             SendNotification("Imperial reminder", "Imperial in 10 minutes!");
                             displayed = false;
-
                         }
                     }
                     for (int counter = 2; counter < 4; counter++)
@@ -1115,7 +1135,6 @@ namespace BDOAssistant
                         }
                     }
                 }
-
 
                 //resets the ability to display the imperial reminder window
                 String[] ImperialReminderResetTimes = { "00:09:01", "00:09:00", "00:00:10", "00:00:11" };
@@ -1130,11 +1149,9 @@ namespace BDOAssistant
                 DebugTime.Text = CurrentTime;
                 DebugBossNumber.Text = Convert.ToString(BossNumber);
                 DebugDay.Text = CurrentDay;
-
             }, Application.Current.Dispatcher);
 
             _timer.Start();
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -1179,12 +1196,10 @@ namespace BDOAssistant
                 label_PreviousBoss.Visibility = Visibility.Hidden;
                 PreviousBossNameBox.Visibility = Visibility.Hidden;
 
-
                 Compacter.Content = "Compacter";
             }
             number++;
         }
-
 
         protected override void OnClosed(EventArgs e)
         {
@@ -1193,15 +1208,12 @@ namespace BDOAssistant
             Application.Current.Shutdown();
         }
 
-
-
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
             Settings s = new Settings();
             {
                 s.Show();
             }
-
         }
 
         public void SendNotification(String Title, String Message)
@@ -1214,13 +1226,10 @@ namespace BDOAssistant
             notification.ShowNotification(Title, Message);
         }
 
-
-
         public String NextBoss(int BossNumber)
         {
             String NextBossName = "DaSe";
             //string[] NextBoss = File.ReadAllLines(@".\BossSchedule.txt", Encoding.UTF8);
-
 
             String[] Nextboss = { "1", "2" };
 
@@ -1259,10 +1268,8 @@ namespace BDOAssistant
                 FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
                 string currentVersion = fileVersionInfo.ProductVersion;
 
-
                 if (NewestVersion.Contains(currentVersion))
                 {
-
                 }
                 else
                 {

@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BDOAssistant
 {
-    class Notification
+    internal class Notification
     {
         private readonly NotifyIcon _notifyIcon;
 
@@ -20,8 +14,6 @@ namespace BDOAssistant
             _notifyIcon.Icon = Properties.Resources.logo;
             // Hides the icon when the notification is closed
             _notifyIcon.BalloonTipClosed += (s, e) => _notifyIcon.Visible = false;
-
-
         }
 
         public void ShowNotification(String Title, String Message)
@@ -31,6 +23,5 @@ namespace BDOAssistant
 
             _notifyIcon.ShowBalloonTip(3000, Title, Message, ToolTipIcon.Info);
         }
-
     }
 }

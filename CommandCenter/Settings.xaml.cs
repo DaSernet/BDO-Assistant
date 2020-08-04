@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
+﻿using System.Windows;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BDOAssistant
 {
@@ -151,7 +140,6 @@ namespace BDOAssistant
                 Properties.Settings.Default.Garmoth = false;
             }
 
-
             //Imperial times
             if (Imperial0.IsChecked == true)
             {
@@ -248,7 +236,6 @@ namespace BDOAssistant
                 Properties.Settings.Default.Night = false;
             }
 
-
             //Boss timers when to remind
             if (mins5.IsChecked == true)
             {
@@ -277,7 +264,6 @@ namespace BDOAssistant
                 Properties.Settings.Default.OnSpawn = false;
             }
 
-
             //seconds
             if (Seconds.IsChecked == true)
             {
@@ -292,8 +278,8 @@ namespace BDOAssistant
             bool StringEmpty = string.IsNullOrEmpty(ClrPcker_Background.SelectedColor.ToString());
 
             if (StringEmpty != true)
-            { 
-            Properties.Settings.Default.Color = ClrPcker_Background.SelectedColor.ToString();
+            {
+                Properties.Settings.Default.Color = ClrPcker_Background.SelectedColor.ToString();
             }
 
             //theme
@@ -324,6 +310,7 @@ namespace BDOAssistant
             comboBox1.SelectedIndex = 2;
             comboBox1.IsDropDownOpen = false;
         }
+
         private void GreyClick(object sender, RoutedEventArgs e)
         {
             comboBox1.SelectedIndex = 3;
