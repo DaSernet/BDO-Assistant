@@ -1,5 +1,5 @@
 # BDO-Assistant
-A tool I made in 2007 to help with Black Desert Online.
+A tool I made in 2017 to help with Black Desert Online.
 
 This tool will remind you off when bosses spawn, imperial and cooking/alchemy reminders.
 
